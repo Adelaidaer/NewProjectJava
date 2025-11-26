@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<f:metadata>
+    <f:viewAction action="#{clientController.loadСlient}" />
+    <f:viewAction action="#{serviceController.init}" />
+    <f:viewAction action="#{paymentController.init}" />
+</f:metadata>
+
+<h:head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Редактирование списка клиентов - Система учета продаж сервисов</title>
+</h:head>
+
+<h:body>
+    <div id="header">
+        <h:form>
+            <p:menubar>
+                <p:menuitem value="Главная" icon="pi pi-home" outcome="index"/>
+                
+                <p:submenu label="Клиенты" icon="pi pi-book">
+                    <p:menuitem value="Список клиентов" outcome="client"/>
+                    <p:menuitem value="Добавить нового клиента" outcome="client-edit"/>
+                </p:submenu>
+                
+                <p:submenu label="Способы оплаты" icon="pi pi-building">
+                    <p:menuitem value="Список способов оплаты" outcome="payment"/>
+                    <p:menuitem value="Добавить способ оплаты" outcome="payment-edit"/>
+                </p:submenu>
+                
+                <p:submenu label="Сервисы" icon="pi pi-sitemap">
+                    <p:menuitem value="Список сервисов" outcome="service"/>
+                    <p:menuitem value="Добавить сервис" outcome="service-edit"/>
+                </p:submenu>
+                
+                <f:facet name="options">
+                    <p:button value="Вход" icon="pi pi-sign-in" outcome="login"/>
+                </f:facet>
+            </p:menubar>
+        </h:form>
+    </div>
+    
+    <div id="content" class="container">
+        <h1>Редактирование информации о клиенте</h1>
+        
+        <p:messages id="messages" showDetail="true" closable="true"/>
+        
+        <!-- Отладочная информация -->
+        <p:panel header="Информация об объекте (только для отладки)" rendered="#{true}" styleClass="mb-3" toggleable="true" collapsed="true">
+            <p>ID клиента: #{clientController.client.id}</p>
+            <p>EditID: #{clientController.editId}</p>
+            <p>Имя: #{clientController.client.nameСlient}</p>
+            <p>Фамилия: #{clientController.client.speciality}</p>
+            <p>Email: #{clientController.client.course}</p>
+            <p>Номер телефона: #{clientController.client.academicYear}</p>
+            <p>ID сервиса: #clientController.selectedServiceId}</p>
+        </p:panel>
+        
+        <h:form id="clientForm">
+            <!-- Скрытое поле для ID -->
+            <h:inputHidden value="#{clientController.client.id}" />
+            <!-- Скрытое поле для editId -->
+            <h:inputHidden value="#{clientController.editId}" />
+            
+            <p:panel header="Общая информация">
+                <div class="p-field p-grid">
+                    <p:outputLabel for="name" styleClass="p-col-12 p-md-3" value="Название:"/>
+                    <div class="p-col-12 p-md-9">
+                        <p:inputText id="name" value="#{clientController.client.nameClient}" required="true" requiredMessage="Введите имя" style="width: 100%"/>
+                    </div>
+                </div>
+
+                <div class="p-field p-grid">
+                    <p:outputLabel for="service" styleClass="p-col-12 p-md-3" value="Сервис:"/>
+                    <div class="p-col-12 p-md-9">
+                        <p:selectOneMenu id="faculty" value="#{clientController.selectedServiceId}" style="width: 100%">
+                            <f:selectItem itemLabel="Выберите сервис" itemValue="#{null}" noSelectionOption="true"/>
+                            <f:selectItems value="#{serviceController.services}" var="fac" itemLabel="#{fac.nameService}" itemValue="#{ser.id}"/>
+                            <p:ajax update="@this" />
+                        </p:selectOneMenu>
+                    </div>
+                </div>
+
+                <div class="p-field p-grid">
+                    <p:outputLabel for="specialty" styleClass="p-col-12 p-md-3" value="Фамилия:"/>
+                    <div class="p-col-12 p-md-9">
+                        <p:inputText id="specialty" value="#{clientController.client.speciality}" required="true" requiredMessage="Введите фамилию" style="width: 100%"/>
+                    </div>
+                </div>
+                
+                <div class="p-field p-grid">
+                    <p:outputLabel for="year" styleClass="p-col-12 p-md-3" value="Email:"/>
+                    <div class="p-col-12 p-md-9">
+                        <p:inputText id="year" value="#{clientController.client.academicYear}" required="true" requiredMessage="Введите email" style="width: 100%"/>
+                    </div>
+                </div>
+
+                <div class="p-field p-grid">
+                    <p:outputLabel for="course" styleClass="p-col-12 p-md-3" value="Номер телефона:"/>
+                    <div class="p-col-12 p-md-9">
+                        <p:inputNumber id="course" value="#{clientController.client.course}" required="true" requiredMessage="Введите номер телефона" minValue="1" maxValue="6" style="width: 100%"/>
+                    </div>
+                </div>
+                
+            </p:panel>
+
+            <div class="p-d-flex p-jc-end mt-3">
+                <p:commandButton value="Отмена" styleClass="ui-button-secondary mr-2" immediate="true" action="client"/>
+                <p:commandButton value="Сохранить" icon="pi pi-check" styleClass="ui-button-primary" action="#{clientController.save}"/>
+            </div>
+        </h:form>
+    </div>
+    
+    <div id="footer">
+        <div class="container">
+            <p>© 2023 Информационная подсистема учета продаж сервисов</p>
+        </div>
+    </div>
+</h:body>
+
+</html> 
