@@ -16,24 +16,24 @@
             <p:panel>
                 <div class="p-field">
                     <p:outputLabel for="nameService" value="Полное название сервиса:" />
-                    <p:inputText id="nameFaculty" value="#{serviceController.service.nameService}" 
+                    <p:inputText id="nameServise" value="#{serviseController.service.nameService}" 
                                 required="true" requiredMessage="Введите полное название сервиса"
                                 style="width: 100%" />
-                    <p:message for="nameService" />
+                    <p:message for="nameServise" />
                 </div>
                 
                 <div class="p-field">
-                    <p:outputLabel for="shortNameService" value="Короткое название сервиса:" />
-                    <p:inputText id="shortNameService" value="#{serviceController.service.shortNameService}" 
+                    <p:outputLabel for="shortNameServise" value="Короткое название сервиса:" />
+                    <p:inputText id="shortNameServise" value="#{serviseController.service.shortNameServise}" 
                                 required="true" requiredMessage="Введите короткое название сервиса"
                                 style="width: 100%" />
-                    <p:message for="shortNameService" />
+                    <p:message for="shortNameServise" />
                 </div>
                 
                 <div class="form-buttons">
-                    <p:commandButton value="Сохранить" action="#{serviceController.save}" 
+                    <p:commandButton value="Сохранить" action="#{serviseController.save}" 
                                     icon="pi pi-check" styleClass="ui-button-success" />
-                    <p:button value="Отмена" outcome="service" icon="pi pi-times" styleClass="ui-button-secondary" />
+                    <p:button value="Отмена" outcome="servise" icon="pi pi-times" styleClass="ui-button-secondary" />
                 </div>
             </p:panel>
         </h:form>
