@@ -8,7 +8,7 @@
 
 <f:metadata>
     <f:viewAction action="#{clientController.loadСlient}" />
-    <f:viewAction action="#{serviceController.init}" />
+    <f:viewAction action="#{serviseController.init}" />
     <f:viewAction action="#{paymentController.init}" />
 </f:metadata>
 
@@ -35,8 +35,8 @@
                 </p:submenu>
                 
                 <p:submenu label="Сервисы" icon="pi pi-sitemap">
-                    <p:menuitem value="Список сервисов" outcome="service"/>
-                    <p:menuitem value="Добавить сервис" outcome="service-edit"/>
+                    <p:menuitem value="Список сервисов" outcome="servise"/>
+                    <p:menuitem value="Добавить сервис" outcome="servise-edit"/>
                 </p:submenu>
                 
                 <f:facet name="options">
@@ -59,7 +59,7 @@
             <p>Фамилия: #{clientController.client.speciality}</p>
             <p>Email: #{clientController.client.course}</p>
             <p>Номер телефона: #{clientController.client.academicYear}</p>
-            <p>ID сервиса: #clientController.selectedServiceId}</p>
+            <p>ID сервиса: #clientController.selectedServiseId}</p>
         </p:panel>
         
         <h:form id="clientForm">
@@ -77,11 +77,11 @@
                 </div>
 
                 <div class="p-field p-grid">
-                    <p:outputLabel for="service" styleClass="p-col-12 p-md-3" value="Сервис:"/>
+                    <p:outputLabel for="servise" styleClass="p-col-12 p-md-3" value="Сервис:"/>
                     <div class="p-col-12 p-md-9">
-                        <p:selectOneMenu id="faculty" value="#{clientController.selectedServiceId}" style="width: 100%">
+                        <p:selectOneMenu id="servise" value="#{clientController.selectedServiseId}" style="width: 100%">
                             <f:selectItem itemLabel="Выберите сервис" itemValue="#{null}" noSelectionOption="true"/>
-                            <f:selectItems value="#{serviceController.services}" var="fac" itemLabel="#{fac.nameService}" itemValue="#{ser.id}"/>
+                            <f:selectItems value="#{serviceController.servises}" var="fac" itemLabel="#{fac.nameServise}" itemValue="#{ser.id}"/>
                             <p:ajax update="@this" />
                         </p:selectOneMenu>
                     </div>
