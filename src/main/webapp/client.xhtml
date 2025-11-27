@@ -49,9 +49,9 @@
                     </p:column>
                     <p:column style="width:100px; text-align: center">
                         <p:commandButton icon="pi pi-pencil" styleClass="rounded-button ui-button-warning mr-2" 
-                                         title="Редактировать" action="#{curriculumController.edit(curriculum.id)}"/>
+                                         title="Редактировать" action="#{clientController.edit(client.id)}"/>
                         <p:commandButton icon="pi pi-trash" styleClass="rounded-button ui-button-danger" 
-                                         title="Удалить" action="#{curriculumController.delete(curriculum.id)}"
+                                         title="Удалить" action="#{clientController.delete(client.id)}"
                                          update="@form"/>
                     </p:column>
                 </p:dataTable>
