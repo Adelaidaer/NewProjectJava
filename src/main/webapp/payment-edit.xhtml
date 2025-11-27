@@ -8,7 +8,7 @@
 
 <f:metadata>
     <f:viewAction action="#{paymentController.loadPayment}" />
-    <f:viewAction action="#{serviceController.init}" />
+    <f:viewAction action="#{serviseController.init}" />
 </f:metadata>
 
 <h:head>
@@ -34,8 +34,8 @@
                 </p:submenu>
                 
                 <p:submenu label="Сервисы" icon="pi pi-sitemap">
-                    <p:menuitem value="Список сервисов" outcome="service"/>
-                    <p:menuitem value="Добавить сервис" outcome="service-edit"/>
+                    <p:menuitem value="Список сервисов" outcome="servise"/>
+                    <p:menuitem value="Добавить сервис" outcome="servise-edit"/>
                 </p:submenu>
                 
                 <f:facet name="options">
@@ -46,18 +46,18 @@
     </div>
     
     <div id="content" class="container">
-        <h1>Редактирование кафедры</h1>
+        <h1>Редактирование</h1>
         
         <p:messages id="messages" showDetail="true" closable="true"/>
         
         <!-- Отладочная информация -->
         <p:panel header="Информация об объекте (только для отладки)" rendered="#{true}" styleClass="mb-3" toggleable="true" collapsed="true">
-            <p>ID кафедры: #{chairController.chair.id}</p>
-            <p>EditID: #{chairController.editId}</p>
-            <p>Название: #{chairController.chair.nameChair}</p>
-            <p>Короткое название: #{chairController.chair.shortNameChair}</p>
-            <p>ID выбранного факультета: #{chairController.selectedFacultyId}</p>
-            <p>Факультет: #{chairController.chair.faculty != null ? chairController.chair.faculty.nameFaculty : 'Не выбран'}</p>
+            <p>ID способа оплаты: #{paymentController.payment.id}</p>
+            <p>EditID: #{paymentController.editId}</p>
+            <p>Название: #{paymentController.chair.namePayment}</p>
+            <p>Короткое название: #{paymentController.payment.shortNamePayment}</p>
+            <p>ID выбранного способа оплаты: #{paymentController.selectedServiseId}</p>
+            <p>Способ оплаты: #{paymentController.payment.servise != null ? paymentController.payment.servise.nameServise : 'Не выбран'}</p>
         </p:panel>
         
         <h:form id="paymentForm">
@@ -70,26 +70,26 @@
                 <div class="p-field p-grid">
                     <p:outputLabel for="name" styleClass="p-col-12 p-md-3" value="Название:"/>
                     <div class="p-col-12 p-md-9">
-                        <p:inputText id="name" value="#{paymentController.chair.namePayment}" required="true" requiredMessage="Введите название способа оплаты" style="width: 100%"/>
+                        <p:inputText id="name" value="#{paymentController.payment.namePayment}" required="true" requiredMessage="Введите название способа оплаты" style="width: 100%"/>
                     </div>
                 </div>
 
                 <div class="p-field p-grid">
                     <p:outputLabel for="shortName" styleClass="p-col-12 p-md-3" value="Краткое название:"/>
                     <div class="p-col-12 p-md-9">
-                        <p:inputText id="shortName" value="#{paymentController.payment.shortNamePayment}" required="true" requiredMessage="Введите краткое название сервиса" style="width: 100%"/>
+                        <p:inputText id="shortName" value="#{paymentController.payment.shortNamePayment}" required="true" requiredMessage="Введите краткое название способа оплаты" style="width: 100%"/>
                     </div>
                 </div>
 
                 <div class="p-field p-grid">
                     <p:outputLabel for="service" styleClass="p-col-12 p-md-3" value="Сервис:"/>
                     <div class="p-col-12 p-md-9">
-                        <p:selectOneMenu id="service" value="#{paymentController.selectedServiceId}" style="width: 100%" required="true" requiredMessage="Выберите сервис">
-                            <f:selectItem itemLabel="Выберите факультет" itemValue="#{null}" noSelectionOption="true"/>
-                            <f:selectItems value="#{serviceController.services}" var="fac" itemLabel="#{fac.nameService}" itemValue="#{ser.id}"/>
+                        <p:selectOneMenu id="service" value="#{paymentController.selectedServiceId}" style="width: 100%" required="true" requiredMessage="Выберите способ оплаты">
+                            <f:selectItem itemLabel="Выберите сервис" itemValue="#{null}" noSelectionOption="true"/>
+                            <f:selectItems value="#{serviseController.servises}" var="fac" itemLabel="#{fac.nameServise}" itemValue="#{ser.id}"/>
                             <p:ajax update="@this" />
                         </p:selectOneMenu>
-                        <p:message for="service" />
+                        <p:message for="servise" />
                     </div>
                 </div>
             </p:panel>
