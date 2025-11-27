@@ -8,10 +8,9 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         
         <!-- Перечисляем все классы сущностей -->
-        <class>org.kursach.kursach.model.Faculty</class>
-        <class>org.kursach.kursach.model.Chair</class>
-        <class>org.kursach.kursach.model.Curriculum</class>
-        <class>org.kursach.kursach.model.Discipline</class>
+        <class>org.kursach.kursach.model.Servise</class>
+        <class>org.kursach.kursach.model.Payment</class>
+        <class>org.kursach.kursach.model.Client</class>
         
         <properties>
             <!-- Подключение напрямую -->
